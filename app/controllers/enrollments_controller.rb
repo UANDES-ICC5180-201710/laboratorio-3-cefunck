@@ -69,12 +69,6 @@ class EnrollmentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def enrollment_params
-      student_id = params.require(:enrollment)[:student]
-      if student_id
-        student = Person.find(student_id)
-      else
-        student = nil
-      end
-      params.require(:enrollment).permit(:course_id).merge(:student => student)
+      params.require(:enrollment).permit(:student, :course)
     end
 end
